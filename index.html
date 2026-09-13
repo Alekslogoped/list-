@@ -2,12 +2,16 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <title>Осенний листопад — С и Ш</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
+
+  <title>Осенний листопад</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
@@ -19,7 +23,11 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      font-family: Arial, sans-serif;
+
+      font-family:
+        Arial,
+        sans-serif;
+
       background: #dcefcf;
     }
 
@@ -27,26 +35,32 @@
       font: inherit;
     }
 
+
+    /* ==================================================
+       ВСЯ ИГРА
+    ================================================== */
+
     #game {
       position: relative;
+
       width: 100vw;
       height: 100vh;
+
       overflow: hidden;
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(196, 232, 255, .9) 0 32%,
-          rgba(207, 236, 179, .95) 32% 100%
-        );
+
+      background: #dcefcf;
     }
 
-    /* =========================
+
+    /* ==================================================
        ЭКРАНЫ
-    ========================= */
+    ================================================== */
 
     .screen {
       position: absolute;
+
       inset: 0;
+
       display: none;
     }
 
@@ -54,30 +68,23 @@
       display: block;
     }
 
-    /* =========================
+
+    /* ==================================================
        СТАРТОВЫЙ ЭКРАН
-    ========================= */
+    ================================================== */
 
     #startScreen {
-      padding: 24px;
-      text-align: center;
-
-      background:
-        radial-gradient(
-          circle at 15% 20%,
-          rgba(255, 255, 255, .8),
-          transparent 18%
-        ),
-        radial-gradient(
-          circle at 85% 18%,
-          rgba(255, 255, 255, .7),
-          transparent 16%
-        ),
+      background-image:
         linear-gradient(
-          #bfe4ff 0 43%,
-          #dbe9a9 43% 100%
-        );
+          rgba(255,255,255,.10),
+          rgba(255,255,255,.10)
+        ),
+        url("fon.png");
+
+      background-size: cover;
+      background-position: center;
     }
+
 
     .start-card {
       position: absolute;
@@ -85,319 +92,300 @@
       left: 50%;
       top: 50%;
 
-      transform: translate(-50%, -50%);
+      transform:
+        translate(-50%, -50%);
 
-      width: min(640px, 88vw);
+      width:
+        min(650px, 88vw);
 
-      padding: 28px 24px;
+      padding:
+        32px 28px;
 
-      background: rgba(255, 255, 255, .92);
+      text-align: center;
 
-      border: 4px solid #ffffff;
-      border-radius: 28px;
+      border-radius: 30px;
+
+      background:
+        rgba(255,255,255,.93);
 
       box-shadow:
-        0 12px 35px rgba(67, 91, 45, .18);
+        0 12px 35px
+        rgba(68,71,34,.20);
     }
+
 
     .start-card h1 {
-      margin: 0 0 10px;
+      margin:
+        0 0 10px;
 
-      font-size: clamp(34px, 6vw, 64px);
-      line-height: .95;
+      color:
+        #b25420;
 
-      color: #a5541d;
+      font-size:
+        clamp(
+          38px,
+          6vw,
+          68px
+        );
+
+      line-height: 1;
     }
+
 
     .start-card p {
-      margin: 14px auto 24px;
+      margin:
+        18px auto 26px;
 
-      max-width: 520px;
+      max-width:
+        520px;
 
-      font-size: clamp(18px, 2.5vw, 27px);
-      line-height: 1.35;
+      color:
+        #47543e;
 
-      color: #3f5136;
+      font-size:
+        clamp(
+          18px,
+          2.4vw,
+          27px
+        );
+
+      line-height:
+        1.4;
     }
 
+
     .main-btn {
+      min-height:
+        58px;
+
+      padding:
+        15px 30px;
+
       border: 0;
-      border-radius: 18px;
 
-      padding: 15px 28px;
+      border-radius:
+        20px;
 
-      min-height: 56px;
+      background:
+        #e8762e;
+
+      color: white;
+
+      font-weight:
+        900;
+
+      font-size:
+        clamp(
+          18px,
+          2vw,
+          25px
+        );
 
       cursor: pointer;
 
-      background: #e97b31;
-      color: white;
-
-      font-weight: 800;
-      font-size: clamp(18px, 2vw, 25px);
-
       box-shadow:
-        0 7px 0 #b95821;
+        0 7px 0
+        #b6521e;
     }
+
 
     .main-btn:active {
-      transform: translateY(4px);
+      transform:
+        translateY(4px);
 
       box-shadow:
-        0 3px 0 #b95821;
+        0 3px 0
+        #b6521e;
     }
 
-    /* =========================
-       ИГРОВОЕ ПОЛЕ
-    ========================= */
+
+    /* ==================================================
+       ИГРОВОЙ ЭКРАН
+    ================================================== */
 
     #playScreen {
-      background:
-        radial-gradient(
-          circle at 13% 68%,
-          #9ab65f 0 7%,
-          transparent 7.5%
-        ),
-        radial-gradient(
-          circle at 86% 68%,
-          #839f50 0 8%,
-          transparent 8.5%
-        ),
-        linear-gradient(
-          #bfe2f7 0 38%,
-          #d6e5a8 38% 100%
-        );
+      background-image:
+        url("fon.png");
+
+      background-size:
+        cover;
+
+      background-position:
+        center;
+
+      background-repeat:
+        no-repeat;
     }
 
-    /*
-      ВРЕМЕННЫЙ ФОН.
 
-      Позже заменим его на:
+    /* затемняем совсем немного,
+       чтобы летающие листья было видно */
 
-      background-image: url("fon.png");
-      background-size: cover;
-      background-position: center;
-    */
-
-    #playScreen::before {
+    #playScreen::after {
       content: "";
 
       position: absolute;
 
-      left: 0;
-      right: 0;
-      bottom: 0;
-
-      height: 42%;
+      inset: 0;
 
       background:
-        radial-gradient(
-          ellipse at 20% 70%,
-          #78994c 0 16%,
-          transparent 17%
-        ),
-        radial-gradient(
-          ellipse at 65% 82%,
-          #8cab55 0 18%,
-          transparent 19%
-        ),
-        radial-gradient(
-          ellipse at 92% 72%,
-          #6f8f45 0 15%,
-          transparent 16%
-        );
-
-      opacity: .75;
+        rgba(255,255,255,.02);
 
       pointer-events: none;
+
+      z-index: 1;
     }
 
-    /* =========================
+
+    /* ==================================================
        ВЕРХНЯЯ ПАНЕЛЬ
-    ========================= */
+    ================================================== */
 
     .topbar {
       position: absolute;
 
-      top: 12px;
-      left: 12px;
-      right: 12px;
+      top: 14px;
+      left: 14px;
+      right: 14px;
 
-      z-index: 50;
+      z-index: 100;
 
       display: grid;
 
       grid-template-columns:
         auto 1fr auto;
 
-      align-items: center;
-
       gap: 12px;
+
+      align-items: center;
     }
+
 
     .pill {
-      min-height: 50px;
+      min-height:
+        54px;
 
-      padding: 11px 17px;
+      padding:
+        12px 18px;
 
-      border-radius: 18px;
+      display: flex;
 
-      background:
-        rgba(255, 255, 255, .92);
+      align-items: center;
 
-      border:
-        2px solid rgba(255, 255, 255, .9);
-
-      box-shadow:
-        0 5px 15px rgba(0, 0, 0, .10);
-
-      color: #44523c;
-
-      font-weight: 800;
-
-      font-size:
-        clamp(15px, 1.8vw, 22px);
-    }
-
-    #taskPill {
-      text-align: center;
-
-      color: #99491d;
-
-      font-size:
-        clamp(18px, 2.3vw, 29px);
-    }
-
-    .sound-btn {
-      width: 52px;
-      height: 52px;
-
-      padding: 0;
-
-      border: 0;
-      border-radius: 18px;
-
-      cursor: pointer;
-
-      background:
-        rgba(255, 255, 255, .92);
-
-      font-size: 27px;
-
-      box-shadow:
-        0 5px 15px rgba(0, 0, 0, .10);
-    }
-
-    /* =========================
-       ГЕРОЙ
-    ========================= */
-
-    .hero-zone {
-      position: absolute;
-
-      left: 3%;
-      bottom: 3%;
-
-      z-index: 20;
-
-      width: min(250px, 28vw);
-      min-width: 135px;
-
-      text-align: center;
-
-      pointer-events: none;
-    }
-
-    #hero {
-      width: 100%;
-
-      aspect-ratio: 1 / 1;
-
-      display: grid;
-      place-items: center;
-
-      font-size:
-        clamp(80px, 12vw, 160px);
-
-      filter:
-        drop-shadow(
-          0 8px 5px rgba(0, 0, 0, .15)
-        );
-
-      transform-origin:
-        bottom center;
-    }
-
-    #hero.catch {
-      animation:
-        heroCatch .42s ease;
-    }
-
-    @keyframes heroCatch {
-
-      0% {
-        transform:
-          scale(1)
-          rotate(0);
-      }
-
-      45% {
-        transform:
-          scale(1.08)
-          rotate(-5deg);
-      }
-
-      100% {
-        transform:
-          scale(1)
-          rotate(0);
-      }
-    }
-
-    .basket {
-      margin:
-        -16px auto 0;
-
-      width: 74%;
-
-      min-height: 66px;
-
-      padding: 8px 10px;
+      justify-content: center;
 
       border-radius:
-        0 0 24px 24px;
+        20px;
 
-      background: #b97835;
+      background:
+        rgba(255,255,255,.94);
 
-      border:
-        5px solid #8b5425;
+      color:
+        #45503e;
 
-      color: white;
-
-      font-weight: 800;
+      font-weight:
+        900;
 
       font-size:
-        clamp(14px, 1.7vw, 20px);
+        clamp(
+          15px,
+          1.8vw,
+          22px
+        );
 
       box-shadow:
-        inset 0 8px 0
-        rgba(255, 255, 255, .14);
+        0 5px 16px
+        rgba(0,0,0,.12);
     }
 
-    /* =========================
-       ПОЛЕ С ЛИСТЬЯМИ
-    ========================= */
+
+    #taskPill {
+      color:
+        #a84b1e;
+
+      font-size:
+        clamp(
+          19px,
+          2.4vw,
+          30px
+        );
+    }
+
+
+    #targetLetter {
+      display: inline-grid;
+
+      place-items: center;
+
+      width: 42px;
+      height: 42px;
+
+      margin-left:
+        8px;
+
+      border-radius:
+        50%;
+
+      background:
+        #e8762e;
+
+      color:
+        white;
+
+      font-size:
+        27px;
+
+      line-height: 1;
+    }
+
+
+    .sound-btn {
+      width:
+        54px;
+
+      height:
+        54px;
+
+      border:
+        0;
+
+      border-radius:
+        18px;
+
+      background:
+        rgba(255,255,255,.94);
+
+      cursor:
+        pointer;
+
+      font-size:
+        28px;
+
+      box-shadow:
+        0 5px 16px
+        rgba(0,0,0,.12);
+    }
+
+
+    /* ==================================================
+       ПОЛЕ ЛИСТЬЕВ
+    ================================================== */
 
     #leafField {
       position: absolute;
 
       inset:
-        70px 0 0;
+        78px 0 0;
 
       overflow: hidden;
 
       z-index: 10;
     }
+
+
+    /* ==================================================
+       ОДИН ЛЕТЯЩИЙ ЛИСТ
+    ================================================== */
 
     .leaf {
       position: absolute;
@@ -406,154 +394,123 @@
       top: 0;
 
       width:
-        clamp(86px, 10vw, 132px);
+        clamp(
+          120px,
+          13vw,
+          190px
+        );
 
       height:
-        clamp(86px, 10vw, 132px);
+        clamp(
+          120px,
+          13vw,
+          190px
+        );
 
-      border: 0;
       padding: 0;
 
-      cursor: pointer;
-
-      background: transparent;
-
-      touch-action: manipulation;
-
-      transform-origin:
-        50% 50%;
-
-      will-change: transform;
-    }
-
-    /* =========================
-       КЛЕНОВЫЙ ЛИСТ
-    ========================= */
-
-    .leaf-shape {
-      position: absolute;
-
-      inset: 7%;
-
-      display: grid;
-
-      place-items: center;
-
-      clip-path:
-        polygon(
-          50% 0%,
-          59% 20%,
-          75% 11%,
-          72% 31%,
-          94% 29%,
-          79% 48%,
-          100% 57%,
-          74% 63%,
-          81% 86%,
-          58% 73%,
-          52% 100%,
-          44% 74%,
-          22% 86%,
-          27% 64%,
-          0% 57%,
-          22% 47%,
-          7% 30%,
-          29% 31%,
-          25% 11%,
-          42% 21%
-        );
+      border: 0;
 
       background:
-        linear-gradient(
-          145deg,
-          #f5aa31,
-          #d85f25 63%,
-          #b84421
-        );
+        transparent;
 
-      border-radius: 25%;
+      cursor:
+        pointer;
+
+      touch-action:
+        manipulation;
+
+      transform-origin:
+        center;
+
+      will-change:
+        transform;
+    }
+
+
+    /* контейнер листа */
+
+    .leaf-inner {
+      position: relative;
+
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+    }
+
+
+    /* настоящий PNG листа */
+
+    .leaf-image {
+      position: absolute;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit:
+        contain;
+
+      pointer-events:
+        none;
 
       filter:
         drop-shadow(
-          0 6px 4px rgba(80, 40, 10, .2)
+          0 6px 5px
+          rgba(88,44,15,.22)
         );
     }
 
-    .leaf:nth-child(3n + 2)
-    .leaf-shape {
 
-      background:
-        linear-gradient(
-          145deg,
-          #f7c146,
-          #e88925 62%,
-          #ca4b20
+    /* картинка предмета */
+
+    .object-image {
+      position: absolute;
+
+      z-index: 3;
+
+      width: 47%;
+      height: 47%;
+
+      object-fit:
+        contain;
+
+      pointer-events:
+        none;
+
+      filter:
+        drop-shadow(
+          0 3px 2px
+          rgba(0,0,0,.16)
         );
     }
 
-    .leaf:nth-child(3n + 3)
-    .leaf-shape {
 
-      background:
-        linear-gradient(
-          145deg,
-          #e8992b,
-          #cc5326 62%,
-          #a93b25
-        );
-    }
-
-    /* =========================
-       КАРТИНКА НА ЛИСТЕ
-    ========================= */
-
-    .picture {
-      position: relative;
-
-      z-index: 2;
-
-      width: 50%;
-      height: 50%;
-
-      display: grid;
-
-      place-items: center;
-
-      border-radius: 50%;
-
-      background:
-        rgba(255, 255, 255, .94);
-
-      box-shadow:
-        0 2px 8px rgba(0, 0, 0, .13);
-
-      font-size:
-        clamp(26px, 4.6vw, 55px);
-
-      line-height: 1;
-
-      pointer-events: none;
-    }
-
-    /* =========================
+    /* ==================================================
        ПРАВИЛЬНЫЙ ВЫБОР
-    ========================= */
+    ================================================== */
 
     .leaf.correct {
-      pointer-events: none;
+      pointer-events:
+        none;
 
       animation:
-        leafCaught .45s ease forwards;
+        correctLeaf
+        .55s ease forwards;
     }
 
-    @keyframes leafCaught {
+
+    @keyframes correctLeaf {
 
       0% {
         opacity: 1;
-        filter: none;
       }
 
-      50% {
+      40% {
         transform:
           scale(1.25);
       }
@@ -566,87 +523,260 @@
       }
     }
 
-    /* =========================
-       ОШИБКА
-    ========================= */
 
-    .leaf.wrong .leaf-shape {
+    /* ==================================================
+       НЕПРАВИЛЬНЫЙ ВЫБОР
+    ================================================== */
+
+    .leaf.wrong
+    .leaf-inner {
+
       animation:
-        wrongShake .4s ease;
-
-      filter:
-        drop-shadow(
-          0 0 8px rgba(197, 35, 35, .8)
-        );
+        wrongLeaf
+        .45s ease;
     }
 
-    @keyframes wrongShake {
+
+    @keyframes wrongLeaf {
 
       0%,
       100% {
-        transform: rotate(0);
+        transform:
+          translateX(0);
       }
 
       20% {
-        transform: rotate(-10deg);
+        transform:
+          translateX(-12px);
       }
 
       40% {
-        transform: rotate(9deg);
+        transform:
+          translateX(11px);
       }
 
       60% {
-        transform: rotate(-7deg);
+        transform:
+          translateX(-8px);
       }
 
       80% {
-        transform: rotate(5deg);
+        transform:
+          translateX(6px);
       }
+
     }
 
-    /* =========================
-       СООБЩЕНИЕ
-    ========================= */
+
+    /* ==================================================
+       ГЕРОЙ
+    ================================================== */
+
+    .hero-zone {
+      position: absolute;
+
+      left:
+        1.5%;
+
+      bottom:
+        1.5%;
+
+      z-index:
+        40;
+
+      width:
+        min(
+          270px,
+          28vw
+        );
+
+      min-width:
+        150px;
+
+      pointer-events:
+        none;
+
+      text-align:
+        center;
+    }
+
+
+    #heroImage {
+      display: block;
+
+      width:
+        100%;
+
+      max-height:
+        46vh;
+
+      object-fit:
+        contain;
+
+      object-position:
+        bottom center;
+
+      filter:
+        drop-shadow(
+          0 8px 7px
+          rgba(0,0,0,.18)
+        );
+
+      transform-origin:
+        bottom center;
+    }
+
+
+    #heroImage.catch {
+      animation:
+        heroCatch
+        .42s ease;
+    }
+
+
+    @keyframes heroCatch {
+
+      0% {
+        transform:
+          scale(1);
+      }
+
+      45% {
+        transform:
+          scale(1.08)
+          rotate(-4deg);
+      }
+
+      100% {
+        transform:
+          scale(1);
+      }
+
+    }
+
+
+    /* ==================================================
+       СЧЁТЧИК
+    ================================================== */
+
+    .score-box {
+      position: absolute;
+
+      left:
+        50%;
+
+      bottom:
+        16px;
+
+      z-index:
+        60;
+
+      transform:
+        translateX(-50%);
+
+      min-width:
+        180px;
+
+      padding:
+        11px 20px;
+
+      border-radius:
+        20px;
+
+      background:
+        rgba(255,255,255,.95);
+
+      color:
+        #535d46;
+
+      font-weight:
+        900;
+
+      font-size:
+        clamp(
+          17px,
+          2vw,
+          24px
+        );
+
+      text-align:
+        center;
+
+      box-shadow:
+        0 5px 16px
+        rgba(0,0,0,.14);
+    }
+
+
+    .score-number {
+      color:
+        #d86124;
+
+      font-size:
+        1.15em;
+    }
+
+
+    /* ==================================================
+       TOAST
+    ================================================== */
 
     #toast {
       position: absolute;
 
-      z-index: 100;
+      z-index:
+        200;
 
-      left: 50%;
-      bottom: 22px;
+      left:
+        50%;
+
+      bottom:
+        82px;
 
       transform:
         translateX(-50%)
         translateY(15px);
 
       max-width:
-        min(520px, 85vw);
+        min(
+          520px,
+          84vw
+        );
 
       padding:
-        13px 20px;
+        13px 22px;
 
-      border-radius: 18px;
+      border-radius:
+        20px;
 
       background:
-        rgba(61, 72, 50, .94);
+        rgba(60,70,49,.94);
 
-      color: white;
+      color:
+        white;
 
-      font-weight: 800;
+      font-weight:
+        900;
 
       font-size:
-        clamp(16px, 2vw, 22px);
+        clamp(
+          16px,
+          2vw,
+          22px
+        );
 
-      text-align: center;
+      text-align:
+        center;
 
       opacity: 0;
 
-      pointer-events: none;
+      pointer-events:
+        none;
 
       transition:
         .2s ease;
     }
+
 
     #toast.show {
       opacity: 1;
@@ -656,46 +786,67 @@
         translateY(0);
     }
 
-    /* =========================
-       МЕЖДУ РАУНДАМИ
-    ========================= */
 
-    #roundScreen {
-      background:
+    /* ==================================================
+       ЭКРАН МЕЖДУ РАУНДАМИ
+    ================================================== */
+
+    #roundScreen,
+    #finishScreen {
+
+      background-image:
         linear-gradient(
-          #bfe4ff,
-          #dce9b1
-        );
+          rgba(255,255,255,.10),
+          rgba(255,255,255,.10)
+        ),
+        url("fon.png");
 
-      text-align: center;
+      background-size:
+        cover;
+
+      background-position:
+        center;
     }
+
 
     .round-card,
     .finish-card {
 
-      position: absolute;
+      position:
+        absolute;
 
-      left: 50%;
-      top: 50%;
+      left:
+        50%;
+
+      top:
+        50%;
 
       transform:
         translate(-50%, -50%);
 
       width:
-        min(620px, 88vw);
+        min(
+          620px,
+          88vw
+        );
 
       padding:
-        30px 24px;
+        32px 26px;
 
-      border-radius: 28px;
+      border-radius:
+        30px;
 
       background:
-        rgba(255, 255, 255, .94);
+        rgba(255,255,255,.94);
+
+      text-align:
+        center;
 
       box-shadow:
         0 12px 35px
-        rgba(67, 91, 45, .18);
+        rgba(67,91,45,.20);
     }
+
 
     .round-card h2,
     .finish-card h2 {
@@ -703,61 +854,56 @@
       margin:
         0 0 12px;
 
-      font-size:
-        clamp(34px, 5vw, 58px);
+      color:
+        #ae5222;
 
-      color: #a5541d;
+      font-size:
+        clamp(
+          36px,
+          5vw,
+          60px
+        );
     }
+
 
     .round-card p,
     .finish-card p {
 
+      color:
+        #4c5943;
+
       font-size:
-        clamp(18px, 2.3vw, 26px);
-
-      color: #48563f;
-
-      line-height: 1.35;
-    }
-
-    /* =========================
-       ФИНАЛ
-    ========================= */
-
-    #finishScreen {
-
-      background:
-        radial-gradient(
-          circle at 20% 25%,
-          #fff1a6 0 8%,
-          transparent 8.5%
-        ),
-        radial-gradient(
-          circle at 80% 24%,
-          #ffd97d 0 8%,
-          transparent 8.5%
-        ),
-        linear-gradient(
-          #c6e8ff 0 42%,
-          #dce7a7 42% 100%
+        clamp(
+          18px,
+          2.3vw,
+          26px
         );
+
+      line-height:
+        1.4;
     }
+
 
     .finish-leaves {
-
       font-size:
-        clamp(38px, 7vw, 82px);
+        clamp(
+          45px,
+          7vw,
+          85px
+        );
 
-      letter-spacing: 8px;
-
-      margin-bottom: 6px;
+      margin-bottom:
+        10px;
     }
 
-    /* =========================
-       МОБИЛЬНАЯ ВЕРСИЯ
-    ========================= */
 
-    @media (max-width: 700px) {
+    /* ==================================================
+       АДАПТАЦИЯ
+    ================================================== */
+
+    @media (
+      max-width: 720px
+    ) {
 
       .topbar {
         grid-template-columns:
@@ -773,12 +919,30 @@
 
       #leafField {
         inset:
-          125px 0 0;
+          140px 0 0;
       }
 
       .hero-zone {
-        width: 30vw;
+        width:
+          31vw;
       }
+
+      .leaf {
+        width:
+          clamp(
+            105px,
+            22vw,
+            145px
+          );
+
+        height:
+          clamp(
+            105px,
+            22vw,
+            145px
+          );
+      }
+
     }
 
   </style>
@@ -789,13 +953,15 @@
 
 <div id="game">
 
-  <!-- =========================
+
+  <!-- ==================================================
        СТАРТ
-  ========================== -->
+  =================================================== -->
 
   <section
     id="startScreen"
-    class="screen active">
+    class="screen active"
+  >
 
     <div class="start-card">
 
@@ -804,18 +970,17 @@
       </h1>
 
       <p>
-        Лови листья с картинками
-        нужного звука.
-        В игре 5 раундов.
+        Помоги мышонку поймать
+        листья с картинками
+        нужного звука!
       </p>
 
       <button
         id="startBtn"
         class="main-btn"
-        type="button">
-
+        type="button"
+      >
         НАЧАТЬ ИГРУ
-
       </button>
 
     </div>
@@ -823,30 +988,38 @@
   </section>
 
 
-  <!-- =========================
+
+  <!-- ==================================================
        ИГРА
-  ========================== -->
+  =================================================== -->
 
   <section
     id="playScreen"
-    class="screen">
+    class="screen"
+  >
+
 
     <div class="topbar">
 
       <div
         id="roundPill"
-        class="pill">
-
+        class="pill"
+      >
         Раунд 1 из 5
-
       </div>
 
 
       <div
         id="taskPill"
-        class="pill">
+        class="pill"
+      >
 
-        Лови звук С
+        Поймай картинки
+        со звуком
+
+        <span id="targetLetter">
+          С
+        </span>
 
       </div>
 
@@ -854,61 +1027,76 @@
       <button
         id="soundBtn"
         class="sound-btn"
-        type="button">
-
+        type="button"
+        aria-label="Звук"
+      >
         🔊
-
       </button>
 
     </div>
 
 
+    <!-- ЛЕТАЮЩИЕ ЛИСТЬЯ -->
+
     <div
-      id="leafField">
-    </div>
+      id="leafField"
+    ></div>
 
 
     <!-- ГЕРОЙ -->
 
     <div class="hero-zone">
 
-      <div id="hero">
-        🦔
-      </div>
+      <img
+        id="heroImage"
+        src="heroes/hero-01.png"
+        alt="Мышонок"
+      >
 
-      <div class="basket">
+    </div>
 
-        Поймано:
 
-        <span id="score">
-          0
-        </span>
+    <!-- СЧЁТЧИК -->
 
-        /
+    <div class="score-box">
 
-        <span id="goal">
-          5
-        </span>
+      Поймано:
 
-      </div>
+      <span
+        id="score"
+        class="score-number"
+      >
+        0
+      </span>
+
+      /
+
+      <span id="goal">
+        5
+      </span>
+
+      🍁
 
     </div>
 
 
     <div
-      id="toast">
-    </div>
+      id="toast"
+      aria-live="polite"
+    ></div>
 
   </section>
 
 
-  <!-- =========================
+
+  <!-- ==================================================
        РАУНД ПРОЙДЕН
-  ========================== -->
+  =================================================== -->
 
   <section
     id="roundScreen"
-    class="screen">
+    class="screen"
+  >
 
     <div class="round-card">
 
@@ -917,16 +1105,15 @@
       </h2>
 
       <p id="roundResultText">
-        Все нужные листья пойманы.
+        Все нужные листья пойманы!
       </p>
 
       <button
         id="nextRoundBtn"
         class="main-btn"
-        type="button">
-
+        type="button"
+      >
         СЛЕДУЮЩИЙ РАУНД
-
       </button>
 
     </div>
@@ -934,18 +1121,20 @@
   </section>
 
 
-  <!-- =========================
+
+  <!-- ==================================================
        ФИНАЛ
-  ========================== -->
+  =================================================== -->
 
   <section
     id="finishScreen"
-    class="screen">
+    class="screen"
+  >
 
     <div class="finish-card">
 
       <div class="finish-leaves">
-        🍁🍂🍁
+        🍁 🍂 🍁
       </div>
 
       <h2>
@@ -953,16 +1142,15 @@
       </h2>
 
       <p>
-        Все 5 раундов пройдены!
+        Все пять раундов пройдены!
       </p>
 
       <button
         id="restartBtn"
         class="main-btn"
-        type="button">
-
+        type="button"
+      >
         ИГРАТЬ ЕЩЁ
-
       </button>
 
     </div>
@@ -972,214 +1160,297 @@
 </div>
 
 
+
 <script>
 
-  /* =====================================================
-     НАСТРОЙКИ ИГРЫ
-  ===================================================== */
+
+  /* ==================================================
+     ОСНОВНЫЕ НАСТРОЙКИ
+  ================================================== */
+
 
   const TOTAL_ROUNDS = 5;
 
   const TARGET_COUNT = 5;
 
 
-  /* =====================================================
-     КАРТИНКИ
-
-     Пока здесь emoji.
-
-     Позже заменим их на PNG,
-     которые ты загрузишь на GitHub.
-  ===================================================== */
-
-  const ITEMS = [
-
-    /* ---------- ЗВУК С ---------- */
-
-    {
-      id: "sok",
-      sound: "S",
-      emoji: "🧃",
-      name: "сок"
-    },
-
-    {
-      id: "sir",
-      sound: "S",
-      emoji: "🧀",
-      name: "сыр"
-    },
-
-    {
-      id: "sova",
-      sound: "S",
-      emoji: "🦉",
-      name: "сова"
-    },
-
-    {
-      id: "sun",
-      sound: "S",
-      emoji: "☀️",
-      name: "солнце"
-    },
-
-    {
-      id: "dog",
-      sound: "S",
-      emoji: "🐕",
-      name: "собака"
-    },
-
-    {
-      id: "nose",
-      sound: "S",
-      emoji: "👃",
-      name: "нос"
-    },
+  /* ==================================================
+     НАШИ ТРИ ЛИСТА
+  ================================================== */
 
 
-    /* ---------- ЗВУК Ш ---------- */
+  const LEAF_IMAGES = [
 
-    {
-      id: "balloon",
-      sound: "SH",
-      emoji: "🎈",
-      name: "шар"
-    },
+    "leaves/leaf-01.png",
 
-    {
-      id: "hat",
-      sound: "SH",
-      emoji: "🎩",
-      name: "шляпа"
-    },
+    "leaves/leaf-02.png",
 
-    {
-      id: "mouse",
-      sound: "SH",
-      emoji: "🐭",
-      name: "мышь"
-    },
-
-    {
-      id: "car",
-      sound: "SH",
-      emoji: "🚗",
-      name: "машина"
-    },
-
-    {
-      id: "chocolate",
-      sound: "SH",
-      emoji: "🍫",
-      name: "шоколад"
-    },
-
-    {
-      id: "cabinet",
-      sound: "SH",
-      emoji: "🗄️",
-      name: "шкаф"
-    }
+    "leaves/leaf-03.png"
 
   ];
 
 
-  /* =====================================================
+
+  /* ==================================================
+     КАРТИНКИ НА ЗВУК С
+  ================================================== */
+
+
+  const S_IMAGES = [
+
+    "sounds/s/s-01.png",
+    "sounds/s/s-02.png",
+    "sounds/s/s-03.png",
+    "sounds/s/s-04.png",
+    "sounds/s/s-05.png",
+    "sounds/s/s-06.png",
+    "sounds/s/s-07.png",
+    "sounds/s/s-08.png",
+    "sounds/s/s-09.png",
+    "sounds/s/s-10.png"
+
+  ];
+
+
+
+  /* ==================================================
+     КАРТИНКИ НА ЗВУК Ш
+  ================================================== */
+
+
+  const SH_IMAGES = [
+
+    "sounds/sh/sh-01.png",
+    "sounds/sh/sh-02.png",
+    "sounds/sh/sh-03.png",
+    "sounds/sh/sh-04.png",
+    "sounds/sh/sh-05.png",
+    "sounds/sh/sh-06.png",
+    "sounds/sh/sh-07.png",
+    "sounds/sh/sh-08.png",
+    "sounds/sh/sh-09.png",
+    "sounds/sh/sh-10.png"
+
+  ];
+
+
+
+  /* ==================================================
+     СОЗДАЁМ ОБЩИЙ СПИСОК
+  ================================================== */
+
+
+  const ITEMS = [];
+
+
+  S_IMAGES.forEach(
+    (image, index) => {
+
+      ITEMS.push({
+
+        id:
+          `s-${index + 1}`,
+
+        sound:
+          "S",
+
+        image:
+          image
+
+      });
+
+    }
+  );
+
+
+  SH_IMAGES.forEach(
+    (image, index) => {
+
+      ITEMS.push({
+
+        id:
+          `sh-${index + 1}`,
+
+        sound:
+          "SH",
+
+        image:
+          image
+
+      });
+
+    }
+  );
+
+
+
+  /* ==================================================
      5 РАУНДОВ
-  ===================================================== */
+
+     Сейчас:
+     1 — С
+     2 — Ш
+     3 — С
+     4 — Ш
+     5 — С
+
+     Потом механику каждого раунда
+     можем сделать разной.
+  ================================================== */
+
 
   const ROUNDS = [
 
     {
-      target: "S",
-      label: "Лови звук С",
-      hero: "🦔"
+      target:
+        "S",
+
+      letter:
+        "С"
     },
 
     {
-      target: "SH",
-      label: "Лови звук Ш",
-      hero: "🐿️"
+      target:
+        "SH",
+
+      letter:
+        "Ш"
     },
 
     {
-      target: "S",
-      label: "Лови звук С",
-      hero: "🦊"
+      target:
+        "S",
+
+      letter:
+        "С"
     },
 
     {
-      target: "SH",
-      label: "Лови звук Ш",
-      hero: "🐰"
+      target:
+        "SH",
+
+      letter:
+        "Ш"
     },
 
     {
-      target: "S",
-      label: "Лови звук С",
-      hero: "🐻"
+      target:
+        "S",
+
+      letter:
+        "С"
     }
 
   ];
 
 
-  /* =====================================================
+
+  /* ==================================================
      ЭЛЕМЕНТЫ
-  ===================================================== */
+  ================================================== */
+
 
   const startScreen =
-    document.getElementById("startScreen");
+    document.getElementById(
+      "startScreen"
+    );
+
 
   const playScreen =
-    document.getElementById("playScreen");
+    document.getElementById(
+      "playScreen"
+    );
+
 
   const roundScreen =
-    document.getElementById("roundScreen");
+    document.getElementById(
+      "roundScreen"
+    );
+
 
   const finishScreen =
-    document.getElementById("finishScreen");
+    document.getElementById(
+      "finishScreen"
+    );
 
 
   const startBtn =
-    document.getElementById("startBtn");
+    document.getElementById(
+      "startBtn"
+    );
+
 
   const nextRoundBtn =
-    document.getElementById("nextRoundBtn");
+    document.getElementById(
+      "nextRoundBtn"
+    );
+
 
   const restartBtn =
-    document.getElementById("restartBtn");
+    document.getElementById(
+      "restartBtn"
+    );
+
 
   const soundBtn =
-    document.getElementById("soundBtn");
+    document.getElementById(
+      "soundBtn"
+    );
+
+
+  const leafField =
+    document.getElementById(
+      "leafField"
+    );
 
 
   const roundPill =
-    document.getElementById("roundPill");
+    document.getElementById(
+      "roundPill"
+    );
 
-  const taskPill =
-    document.getElementById("taskPill");
 
-  const leafField =
-    document.getElementById("leafField");
+  const targetLetter =
+    document.getElementById(
+      "targetLetter"
+    );
 
-  const hero =
-    document.getElementById("hero");
 
   const scoreEl =
-    document.getElementById("score");
+    document.getElementById(
+      "score"
+    );
+
 
   const goalEl =
-    document.getElementById("goal");
+    document.getElementById(
+      "goal"
+    );
+
+
+  const heroImage =
+    document.getElementById(
+      "heroImage"
+    );
+
 
   const toast =
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
 
 
-  /* =====================================================
+  const roundResultText =
+    document.getElementById(
+      "roundResultText"
+    );
+
+
+
+  /* ==================================================
      СОСТОЯНИЕ
-  ===================================================== */
+  ================================================== */
+
 
   let currentRound = 0;
 
@@ -1191,12 +1462,12 @@
 
   let animationId = null;
 
+  let active = false;
+
   let lastTime =
     performance.now();
 
   let spawnTimer = 0;
-
-  let active = false;
 
   let toastTimer = null;
 
@@ -1205,9 +1476,11 @@
     TARGET_COUNT;
 
 
-  /* =====================================================
-     ЭКРАНЫ
-  ===================================================== */
+
+  /* ==================================================
+     ПОКАЗАТЬ ЭКРАН
+  ================================================== */
+
 
   function showScreen(screen) {
 
@@ -1217,21 +1490,30 @@
       roundScreen,
       finishScreen
     ]
-    .forEach(element => {
 
-      element.classList.remove("active");
+    .forEach(
+      element => {
 
-    });
+        element.classList.remove(
+          "active"
+        );
+
+      }
+    );
 
 
-    screen.classList.add("active");
+    screen.classList.add(
+      "active"
+    );
 
   }
 
 
-  /* =====================================================
+
+  /* ==================================================
      НАЧАЛО ИГРЫ
-  ===================================================== */
+  ================================================== */
+
 
   function startGame() {
 
@@ -1242,9 +1524,11 @@
   }
 
 
-  /* =====================================================
+
+  /* ==================================================
      НАЧАЛО РАУНДА
-  ===================================================== */
+  ================================================== */
+
 
   function startRound() {
 
@@ -1254,6 +1538,7 @@
 
 
     score = 0;
+
 
     scoreEl.textContent =
       score;
@@ -1267,15 +1552,13 @@
       `Раунд ${currentRound + 1} из ${TOTAL_ROUNDS}`;
 
 
-    taskPill.textContent =
-      round.label;
+    targetLetter.textContent =
+      round.letter;
 
 
-    hero.textContent =
-      round.hero;
-
-
-    showScreen(playScreen);
+    showScreen(
+      playScreen
+    );
 
 
     active = true;
@@ -1286,7 +1569,11 @@
       performance.now();
 
 
-    /* Сразу показываем несколько листьев */
+    /*
+      Сразу создаём листья,
+      чтобы поле не было пустым.
+    */
+
 
     for (
       let i = 0;
@@ -1300,14 +1587,506 @@
 
 
     animationId =
-      requestAnimationFrame(gameLoop);
+      requestAnimationFrame(
+        gameLoop
+      );
 
   }
 
 
-  /* =====================================================
+
+  /* ==================================================
+     СОЗДАТЬ ЛИСТ
+  ================================================== */
+
+
+  function spawnLeaf(
+    initial = false
+  ) {
+
+    if (!active) {
+      return;
+    }
+
+
+    const fieldRect =
+      leafField
+        .getBoundingClientRect();
+
+
+    if (
+      fieldRect.width < 100 ||
+      fieldRect.height < 100
+    ) {
+
+      return;
+
+    }
+
+
+    const target =
+      ROUNDS[currentRound].target;
+
+
+    /*
+      Примерно половина —
+      правильные картинки.
+    */
+
+
+    let sound;
+
+
+    if (
+      Math.random() < 0.52
+    ) {
+
+      sound =
+        target;
+
+    }
+
+    else {
+
+      sound =
+        target === "S"
+          ? "SH"
+          : "S";
+
+    }
+
+
+    const possible =
+      ITEMS.filter(
+        item =>
+          item.sound === sound
+      );
+
+
+    const item =
+      possible[
+        Math.floor(
+          Math.random()
+          * possible.length
+        )
+      ];
+
+
+    /*
+      Случайно выбираем один
+      из трёх кленовых листьев.
+    */
+
+
+    const leafImage =
+      LEAF_IMAGES[
+        Math.floor(
+          Math.random()
+          * LEAF_IMAGES.length
+        )
+      ];
+
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.type =
+      "button";
+
+
+    button.className =
+      "leaf";
+
+
+    /*
+      Здесь отдельно:
+      PNG листа
+      +
+      PNG картинки.
+    */
+
+
+    button.innerHTML = `
+
+      <div class="leaf-inner">
+
+        <img
+          class="leaf-image"
+          src="${leafImage}"
+          alt=""
+          draggable="false"
+        >
+
+        <img
+          class="object-image"
+          src="${item.image}"
+          alt=""
+          draggable="false"
+        >
+
+      </div>
+
+    `;
+
+
+    leafField.appendChild(
+      button
+    );
+
+
+    const size =
+      Math.max(
+        120,
+        Math.min(
+          190,
+          fieldRect.width * .13
+        )
+      );
+
+
+    /*
+      Слева оставляем свободное
+      место для мышонка.
+    */
+
+
+    const minX =
+      fieldRect.width * .20;
+
+
+    const maxX =
+      Math.max(
+
+        minX + 20,
+
+        fieldRect.width
+        - size
+        - 25
+
+      );
+
+
+    const x =
+      minX
+      +
+      Math.random()
+      *
+      (maxX - minX);
+
+
+    let y;
+
+
+    if (initial) {
+
+      y =
+        20
+        +
+        Math.random()
+        *
+        Math.max(
+          80,
+          fieldRect.height * .60
+        );
+
+    }
+
+    else {
+
+      y =
+        -size
+        -
+        Math.random()
+        * 100;
+
+    }
+
+
+    const leafData = {
+
+      element:
+        button,
+
+      item:
+        item,
+
+      x:
+        x,
+
+      baseX:
+        x,
+
+      y:
+        y,
+
+      speedY:
+        13
+        +
+        Math.random()
+        * 13,
+
+      swayAmount:
+        30
+        +
+        Math.random()
+        * 55,
+
+      swaySpeed:
+        .45
+        +
+        Math.random()
+        * .6,
+
+      phase:
+        Math.random()
+        * Math.PI
+        * 2,
+
+      angle:
+        -8
+        +
+        Math.random()
+        * 16,
+
+      rotateSpeed:
+        (
+          Math.random() - .5
+        )
+        * 10,
+
+      born:
+        performance.now(),
+
+      removed:
+        false
+
+    };
+
+
+    button.addEventListener(
+
+      "pointerdown",
+
+      event => {
+
+        event.preventDefault();
+
+        chooseLeaf(
+          leafData
+        );
+
+      }
+
+    );
+
+
+    leaves.push(
+      leafData
+    );
+
+  }
+
+
+
+  /* ==================================================
+     НАЖАТИЕ НА ЛИСТ
+  ================================================== */
+
+
+  function chooseLeaf(
+    leaf
+  ) {
+
+    if (
+      !active ||
+      leaf.removed
+    ) {
+
+      return;
+
+    }
+
+
+    const target =
+      ROUNDS[currentRound].target;
+
+
+
+    /* ==================================================
+       ПРАВИЛЬНАЯ КАРТИНКА
+    ================================================== */
+
+
+    if (
+      leaf.item.sound === target
+    ) {
+
+      leaf.removed =
+        true;
+
+
+      leaf.element.classList.add(
+        "correct"
+      );
+
+
+      score++;
+
+
+      scoreEl.textContent =
+        score;
+
+
+      /*
+        Мышонок радуется.
+      */
+
+
+      heroImage.classList.remove(
+        "catch"
+      );
+
+
+      void heroImage.offsetWidth;
+
+
+      heroImage.classList.add(
+        "catch"
+      );
+
+
+      playTone(
+        620 + score * 35,
+        .09
+      );
+
+
+      /*
+        Раунд закончен.
+      */
+
+
+      if (
+        score >= TARGET_COUNT
+      ) {
+
+        active =
+          false;
+
+
+        showToast(
+          "Отлично! Все листья пойманы! 🍁"
+        );
+
+
+        setTimeout(
+          finishRound,
+          800
+        );
+
+      }
+
+    }
+
+
+
+    /* ==================================================
+       НЕПРАВИЛЬНАЯ КАРТИНКА
+    ================================================== */
+
+
+    else {
+
+      leaf.element
+        .classList
+        .remove(
+          "wrong"
+        );
+
+
+      void leaf.element.offsetWidth;
+
+
+      leaf.element
+        .classList
+        .add(
+          "wrong"
+        );
+
+
+      showToast(
+        "Послушай ещё раз 🙂"
+      );
+
+
+      playTone(
+        210,
+        .09
+      );
+
+
+      setTimeout(
+        () => {
+
+          leaf.element
+            .classList
+            .remove(
+              "wrong"
+            );
+
+        },
+        470
+      );
+
+    }
+
+  }
+
+
+
+  /* ==================================================
+     КОНЕЦ РАУНДА
+  ================================================== */
+
+
+  function finishRound() {
+
+    stopGameLoop();
+
+    clearLeaves();
+
+
+    if (
+      currentRound
+      === TOTAL_ROUNDS - 1
+    ) {
+
+      showFinish();
+
+      return;
+
+    }
+
+
+    roundResultText.textContent =
+      `Раунд ${currentRound + 1} пройден!`;
+
+
+    showScreen(
+      roundScreen
+    );
+
+  }
+
+
+
+  /* ==================================================
      СЛЕДУЮЩИЙ РАУНД
-  ===================================================== */
+  ================================================== */
+
 
   function nextRound() {
 
@@ -1330,467 +2109,11 @@
   }
 
 
-  /* =====================================================
-     ФИНАЛ
-  ===================================================== */
 
-  function showFinish() {
+  /* ==================================================
+     ДВИЖЕНИЕ ЛИСТЬЕВ
+  ================================================== */
 
-    stopGameLoop();
-
-    clearLeaves();
-
-    showScreen(
-      finishScreen
-    );
-
-
-    playTone(
-      720,
-      0.13
-    );
-
-
-    setTimeout(
-      () => {
-
-        playTone(
-          880,
-          0.17
-        );
-
-      },
-      150
-    );
-
-  }
-
-
-  function restartGame() {
-
-    currentRound = 0;
-
-    startRound();
-
-  }
-
-
-  /* =====================================================
-     СОЗДАНИЕ ЛИСТА
-  ===================================================== */
-
-  function spawnLeaf(initial = false) {
-
-    if (!active) {
-      return;
-    }
-
-
-    const fieldRect =
-      leafField.getBoundingClientRect();
-
-
-    if (
-      fieldRect.width < 100 ||
-      fieldRect.height < 100
-    ) {
-
-      return;
-
-    }
-
-
-    const currentTarget =
-      ROUNDS[currentRound].target;
-
-
-    let desiredSound;
-
-
-    /*
-      Примерно половина листьев
-      будет правильной.
-    */
-
-    if (
-      Math.random() < 0.52
-    ) {
-
-      desiredSound =
-        currentTarget;
-
-    }
-
-    else {
-
-      desiredSound =
-        currentTarget === "S"
-          ? "SH"
-          : "S";
-
-    }
-
-
-    const possible =
-      ITEMS.filter(
-        item =>
-          item.sound === desiredSound
-      );
-
-
-    const item =
-      possible[
-        Math.floor(
-          Math.random()
-          * possible.length
-        )
-      ];
-
-
-    /* Создаём кнопку-лист */
-
-    const button =
-      document.createElement(
-        "button"
-      );
-
-
-    button.type =
-      "button";
-
-
-    button.className =
-      "leaf";
-
-
-    button.setAttribute(
-      "aria-label",
-      item.name
-    );
-
-
-    button.dataset.sound =
-      item.sound;
-
-
-    button.innerHTML = `
-
-      <span class="leaf-shape">
-
-        <span class="picture">
-
-          ${item.emoji}
-
-        </span>
-
-      </span>
-
-    `;
-
-
-    leafField.appendChild(
-      button
-    );
-
-
-    const leafSize =
-      Math.max(
-        86,
-        Math.min(
-          132,
-          fieldRect.width * 0.10
-        )
-      );
-
-
-    /*
-      Слева оставляем место
-      для героя.
-    */
-
-    const safeLeft =
-      fieldRect.width * 0.25;
-
-
-    const minX =
-      safeLeft;
-
-
-    const maxX =
-      Math.max(
-        minX + 20,
-        fieldRect.width
-          - leafSize
-          - 20
-      );
-
-
-    const x =
-      minX
-      + Math.random()
-      * (maxX - minX);
-
-
-    let y;
-
-
-    if (initial) {
-
-      y =
-        30
-        + Math.random()
-        * Math.max(
-          60,
-          fieldRect.height * 0.55
-        );
-
-    }
-
-    else {
-
-      y =
-        -leafSize
-        - Math.random() * 80;
-
-    }
-
-
-    const leafData = {
-
-      el: button,
-
-      item: item,
-
-      x: x,
-
-      y: y,
-
-      baseX: x,
-
-      speedY:
-        12
-        + Math.random() * 12,
-
-      driftSpeed:
-        0.55
-        + Math.random() * 0.65,
-
-      driftAmount:
-        24
-        + Math.random() * 46,
-
-      angle:
-        Math.random() * 360,
-
-      rotateSpeed:
-        (Math.random() - 0.5)
-        * 18,
-
-      phase:
-        Math.random()
-        * Math.PI
-        * 2,
-
-      bornAt:
-        performance.now(),
-
-      removed:
-        false
-
-    };
-
-
-    /*
-      POINTERDOWN работает
-      и мышкой, и пальцем.
-    */
-
-    button.addEventListener(
-      "pointerdown",
-      event => {
-
-        event.preventDefault();
-
-        chooseLeaf(
-          leafData
-        );
-
-      }
-    );
-
-
-    leaves.push(
-      leafData
-    );
-
-  }
-
-
-  /* =====================================================
-     ВЫБОР ЛИСТА
-  ===================================================== */
-
-  function chooseLeaf(leaf) {
-
-    if (
-      !active ||
-      leaf.removed
-    ) {
-
-      return;
-
-    }
-
-
-    const target =
-      ROUNDS[currentRound].target;
-
-
-    /* ---------- ПРАВИЛЬНО ---------- */
-
-    if (
-      leaf.item.sound === target
-    ) {
-
-      leaf.removed =
-        true;
-
-
-      leaf.el.classList.add(
-        "correct"
-      );
-
-
-      score++;
-
-
-      scoreEl.textContent =
-        score;
-
-
-      hero.classList.remove(
-        "catch"
-      );
-
-
-      void hero.offsetWidth;
-
-
-      hero.classList.add(
-        "catch"
-      );
-
-
-      playTone(
-        620 + score * 35,
-        0.09
-      );
-
-
-      /* Раунд закончен */
-
-      if (
-        score >= TARGET_COUNT
-      ) {
-
-        active =
-          false;
-
-
-        showToast(
-          "Все нужные листья пойманы! 🍁"
-        );
-
-
-        setTimeout(
-          () => {
-
-            stopGameLoop();
-
-            clearLeaves();
-
-
-            document
-              .getElementById(
-                "roundResultText"
-              )
-              .textContent =
-              `Раунд ${currentRound + 1} пройден!`;
-
-
-            if (
-              currentRound
-              === TOTAL_ROUNDS - 1
-            ) {
-
-              showFinish();
-
-            }
-
-            else {
-
-              showScreen(
-                roundScreen
-              );
-
-            }
-
-          },
-          700
-        );
-
-      }
-
-    }
-
-
-    /* ---------- ОШИБКА ---------- */
-
-    else {
-
-      leaf.el.classList.remove(
-        "wrong"
-      );
-
-
-      void leaf.el.offsetWidth;
-
-
-      leaf.el.classList.add(
-        "wrong"
-      );
-
-
-      showToast(
-        "Этот лист не подходит 🙂"
-      );
-
-
-      playTone(
-        210,
-        0.08
-      );
-
-
-      setTimeout(
-        () => {
-
-          leaf.el.classList.remove(
-            "wrong"
-          );
-
-        },
-        430
-      );
-
-    }
-
-  }
-
-
-  /* =====================================================
-     АНИМАЦИЯ ЛИСТЬЕВ
-  ===================================================== */
 
   function gameLoop(time) {
 
@@ -1801,8 +2124,11 @@
 
     const dt =
       Math.min(
-        0.05,
-        (time - lastTime) / 1000
+        .05,
+        (
+          time - lastTime
+        )
+        / 1000
       );
 
 
@@ -1811,7 +2137,8 @@
 
 
     const fieldRect =
-      leafField.getBoundingClientRect();
+      leafField
+        .getBoundingClientRect();
 
 
     spawnTimer +=
@@ -1819,13 +2146,13 @@
 
 
     /*
-      Новый лист появляется
-      примерно каждые 1.25 секунды.
+      Добавляем новый лист.
     */
 
+
     if (
-      spawnTimer >= 1.25 &&
-      leaves.length < 10
+      spawnTimer >= 1.35 &&
+      leaves.length < 9
     ) {
 
       spawnTimer = 0;
@@ -1848,41 +2175,59 @@
 
 
         const age =
-          (time - leaf.bornAt)
+          (
+            time - leaf.born
+          )
           / 1000;
 
 
         leaf.y +=
-          leaf.speedY * dt;
+          leaf.speedY
+          * dt;
 
 
         leaf.angle +=
-          leaf.rotateSpeed * dt;
+          leaf.rotateSpeed
+          * dt;
 
 
         /*
-          Лист покачивается
+          Спокойное плавание
           вправо-влево.
         */
 
+
         const sway =
+
           Math.sin(
+
             age
-            * leaf.driftSpeed
-            * 2.2
-            + leaf.phase
+            *
+            leaf.swaySpeed
+            *
+            2.2
+
+            +
+
+            leaf.phase
+
           )
-          * leaf.driftAmount;
+
+          *
+
+          leaf.swayAmount;
 
 
-        const drawX =
-          leaf.baseX + sway;
+        const x =
+          leaf.baseX
+          +
+          sway;
 
 
-        leaf.el.style.transform =
+        leaf.element.style.transform =
 
           `translate3d(
-            ${drawX}px,
+            ${x}px,
             ${leaf.y}px,
             0
           )
@@ -1893,23 +2238,27 @@
 
         /*
           Лист дошёл до низа —
-          отправляем его наверх.
+          возвращаем наверх.
         */
 
+
         if (
-          leaf.y
-          > fieldRect.height + 150
+          leaf.y >
+          fieldRect.height
+          + 180
         ) {
 
           leaf.y =
-            -150
-            - Math.random() * 120;
+            -180
+            -
+            Math.random()
+            * 120;
 
 
           leaf.baseX =
 
             fieldRect.width
-            * 0.25
+            * .20
 
             +
 
@@ -1918,15 +2267,17 @@
             *
 
             Math.max(
-              20,
-              fieldRect.width * 0.65
+              30,
+              fieldRect.width * .70
             );
 
 
           leaf.phase =
             Math.random()
-            * Math.PI
-            * 2;
+            *
+            Math.PI
+            *
+            2;
 
         }
 
@@ -1937,6 +2288,7 @@
     /*
       Удаляем пойманные листья.
     */
+
 
     leaves =
       leaves.filter(
@@ -1951,20 +2303,21 @@
           }
 
 
-          if (
-            leaf.el.isConnected
-          ) {
+          setTimeout(
+            () => {
 
-            setTimeout(
-              () => {
+              if (
+                leaf.element
+                  .isConnected
+              ) {
 
-                leaf.el.remove();
+                leaf.element.remove();
 
-              },
-              460
-            );
+              }
 
-          }
+            },
+            560
+          );
 
 
           return false;
@@ -1981,9 +2334,11 @@
   }
 
 
-  /* =====================================================
-     ОСТАНОВКА
-  ===================================================== */
+
+  /* ==================================================
+     ОСТАНОВИТЬ АНИМАЦИЮ
+  ================================================== */
+
 
   function stopGameLoop() {
 
@@ -2008,22 +2363,27 @@
   }
 
 
-  /* =====================================================
-     ОЧИСТКА ЛИСТЬЕВ
-  ===================================================== */
+
+  /* ==================================================
+     УДАЛИТЬ ЛИСТЬЯ
+  ================================================== */
+
 
   function clearLeaves() {
 
     leaves = [];
 
-    leafField.innerHTML = "";
+    leafField.innerHTML =
+      "";
 
   }
 
 
-  /* =====================================================
+
+  /* ==================================================
      СООБЩЕНИЯ
-  ===================================================== */
+  ================================================== */
+
 
   function showToast(text) {
 
@@ -2050,19 +2410,90 @@
           );
 
         },
-        1150
+        1300
       );
 
   }
 
 
-  /* =====================================================
+
+  /* ==================================================
+     ФИНАЛ
+  ================================================== */
+
+
+  function showFinish() {
+
+    stopGameLoop();
+
+    clearLeaves();
+
+
+    showScreen(
+      finishScreen
+    );
+
+
+    playTone(
+      700,
+      .12
+    );
+
+
+    setTimeout(
+      () => {
+
+        playTone(
+          850,
+          .12
+        );
+
+      },
+      140
+    );
+
+
+    setTimeout(
+      () => {
+
+        playTone(
+          1000,
+          .16
+        );
+
+      },
+      280
+    );
+
+  }
+
+
+
+  /* ==================================================
+     НАЧАТЬ ЗАНОВО
+  ================================================== */
+
+
+  function restartGame() {
+
+    currentRound =
+      0;
+
+
+    startRound();
+
+  }
+
+
+
+  /* ==================================================
      ЗВУК
-  ===================================================== */
+  ================================================== */
+
 
   function playTone(
     frequency = 500,
-    duration = 0.1
+    duration = .1
   ) {
 
     if (!soundOn) {
@@ -2083,16 +2514,16 @@
       }
 
 
-      const ctx =
+      const context =
         new AudioContext();
 
 
       const oscillator =
-        ctx.createOscillator();
+        context.createOscillator();
 
 
       const gain =
-        ctx.createGain();
+        context.createGain();
 
 
       oscillator.type =
@@ -2104,14 +2535,19 @@
 
 
       gain.gain.setValueAtTime(
-        0.05,
-        ctx.currentTime
+        .045,
+        context.currentTime
       );
 
 
       gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        ctx.currentTime + duration
+
+        .001,
+
+        context.currentTime
+        +
+        duration
+
       );
 
 
@@ -2121,7 +2557,7 @@
 
 
       gain.connect(
-        ctx.destination
+        context.destination
       );
 
 
@@ -2129,22 +2565,28 @@
 
 
       oscillator.stop(
-        ctx.currentTime + duration
+        context.currentTime
+        +
+        duration
       );
 
 
       oscillator.addEventListener(
+
         "ended",
+
         () => {
 
-          ctx.close();
+          context.close();
 
         }
+
       );
 
     }
 
-    catch (error) {
+
+    catch(error) {
 
       console.log(
         "Sound error:",
@@ -2156,9 +2598,11 @@
   }
 
 
-  /* =====================================================
-     ВКЛ / ВЫКЛ ЗВУКА
-  ===================================================== */
+
+  /* ==================================================
+     ВКЛЮЧИТЬ / ВЫКЛЮЧИТЬ ЗВУК
+  ================================================== */
+
 
   function toggleSound() {
 
@@ -2168,15 +2612,17 @@
 
     soundBtn.textContent =
       soundOn
-        ? "🔊"
-        : "🔇";
+      ? "🔊"
+      : "🔇";
 
   }
 
 
-  /* =====================================================
+
+  /* ==================================================
      КНОПКИ
-  ===================================================== */
+  ================================================== */
+
 
   startBtn.addEventListener(
     "click",
@@ -2200,6 +2646,7 @@
     "click",
     toggleSound
   );
+
 
 </script>
 
